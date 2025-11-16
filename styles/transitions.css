@@ -1,0 +1,227 @@
+@view-transition {
+  navigation: auto;
+}
+
+
+/* Customize the default page transition duration */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+}
+
+/* Old page slides out to the left and fades */
+::view-transition-old(root) {
+  animation-name: slide-out-left;
+}
+
+/* New page slides in from the right and fades in */
+::view-transition-new(root) {
+  animation-name: slide-in-right;
+}
+
+@keyframes slide-out-left {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+/* Brand logo transition - maintain position across pages */
+.brand__logo {
+  view-transition-name: brand-logo;
+}
+
+::view-transition-old(brand-logo),
+::view-transition-new(brand-logo) {
+  animation-duration: 0.5s;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Page header transitions */
+.page-header h1 {
+  view-transition-name: page-title;
+}
+
+::view-transition-old(page-title),
+::view-transition-new(page-title) {
+  animation-duration: 0.6s;
+}
+
+::view-transition-old(page-title) {
+  animation-name: title-fade-out;
+}
+
+::view-transition-new(page-title) {
+  animation-name: title-fade-in;
+}
+
+@keyframes title-fade-out {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20px) scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes title-fade-in {
+  from {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Navigation rail transitions */
+.rail--nav {
+  view-transition-name: nav-rail;
+}
+
+::view-transition-old(nav-rail),
+::view-transition-new(nav-rail) {
+  animation-duration: 0.3s;
+}
+
+/* Hero section on home page */
+.hero-title {
+  view-transition-name: hero-title;
+}
+
+::view-transition-old(hero-title),
+::view-transition-new(hero-title) {
+  animation-duration: 0.7s;
+}
+
+/* Profile picture on about page */
+.profile-picture img {
+  view-transition-name: profile-image;
+}
+
+::view-transition-old(profile-image),
+::view-transition-new(profile-image) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Contact form transition */
+.contact-form {
+  view-transition-name: contact-form;
+}
+
+::view-transition-old(contact-form),
+::view-transition-new(contact-form) {
+  animation-duration: 0.5s;
+}
+
+::view-transition-old(contact-form) {
+  animation-name: form-scale-out;
+}
+
+::view-transition-new(contact-form) {
+  animation-name: form-scale-in;
+}
+
+@keyframes form-scale-out {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes form-scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Project cards transition */
+.project-card {
+  view-transition-name: project-card;
+}
+
+::view-transition-old(project-card),
+::view-transition-new(project-card) {
+  animation-duration: 0.5s;
+}
+
+
+/* Fade transition for certain pages */
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Scale transition */
+@keyframes scale-out {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Disable transitions for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: auto;
+  }
+  
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+}
